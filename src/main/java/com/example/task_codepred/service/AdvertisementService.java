@@ -1,11 +1,13 @@
 package com.example.task_codepred.service;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.example.task_codepred.entity.Advertisement;
 import com.example.task_codepred.exception.AdvertisementNotFoundException;
 import com.example.task_codepred.repository.AdvertisementRepository;
+
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -34,7 +36,6 @@ public class AdvertisementService {
         advertisementRepository.deleteById(id);
     }
 
-    @Transactional(readOnly = true)
     public Advertisement getById(Long id) {
         Advertisement advertisement = advertisementRepository.findById(id)
                 .orElseThrow(() -> new AdvertisementNotFoundException(id));
