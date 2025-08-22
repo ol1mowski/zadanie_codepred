@@ -15,14 +15,15 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .csrf(csrf -> csrf.disable())
-            .authorizeHttpRequests(authz -> authz
-                .requestMatchers("/").permitAll()
-                .requestMatchers("/ads/**").permitAll()
-                .requestMatchers("/h2-console/**").permitAll()
-                .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
-                .requestMatchers("/error").permitAll()
-                .anyRequest().permitAll()
-            )
+                               .authorizeHttpRequests(authz -> authz
+                       .requestMatchers("/").permitAll()
+                       .requestMatchers("/ads/**").permitAll()
+                       .requestMatchers("/h2-console/**").permitAll()
+                       .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
+                       .requestMatchers("/actuator/**").permitAll()
+                       .requestMatchers("/error").permitAll()
+                       .anyRequest().permitAll()
+                   )
             .headers(headers -> headers
                 .frameOptions(frame -> frame.disable()) // For H2 console
                 .httpStrictTransportSecurity(hstsConfig -> hstsConfig
