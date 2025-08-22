@@ -1,0 +1,441 @@
+{
+	"info": {
+		"_postman_id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+		"name": "Advertisement API - Task Codepred",
+		"description": "Kolekcja Postman dla aplikacji ogłoszeniowej z endpointami CRUD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. ADD - Dodaj ogłoszenie",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tresc\": \"Nowe ogłoszenie o sprzedaży samochodu\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/ads",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ads"
+					]
+				},
+				"description": "Dodaje nowe ogłoszenie. Automatycznie ustawia dataDodania i iloscWyswietlen=0"
+			},
+			"response": [
+				{
+					"name": "Success Response",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tresc\": \"Nowe ogłoszenie o sprzedaży samochodu\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/ads",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ads"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"tresc\": \"Nowe ogłoszenie o sprzedaży samochodu\",\n    \"dataDodania\": \"2025-08-22T13:45:00\",\n    \"iloscWyswietlen\": 0\n}"
+				}
+			]
+		},
+		{
+			"name": "2. GET - Pobierz ogłoszenie po ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/ads/{{advertisement_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ads",
+						"{{advertisement_id}}"
+					]
+				},
+				"description": "Pobiera ogłoszenie po ID. Automatycznie zwiększa licznik wyświetleń o 1"
+			},
+			"response": [
+				{
+					"name": "Success Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ads/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ads",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"tresc\": \"Nowe ogłoszenie o sprzedaży samochodu\",\n    \"dataDodania\": \"2025-08-22T13:45:00\",\n    \"iloscWyswietlen\": 1\n}"
+				},
+				{
+					"name": "Not Found Response",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ads/999",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ads",
+								"999"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": \"2025-08-22T13:45:30\",\n    \"status\": 404,\n    \"message\": \"Advertisement with id 999 not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "3. UPDATE - Edytuj ogłoszenie",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tresc\": \"Zaktualizowane ogłoszenie o sprzedaży samochodu\",\n    \"iloscWyswietlen\": 5\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/ads/{{advertisement_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ads",
+						"{{advertisement_id}}"
+					]
+				},
+				"description": "Aktualizuje istniejące ogłoszenie. Wymaga podania nowej treści i liczby wyświetleń"
+			},
+			"response": [
+				{
+					"name": "Success Response",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tresc\": \"Zaktualizowane ogłoszenie o sprzedaży samochodu\",\n    \"iloscWyswietlen\": 5\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/ads/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ads",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"tresc\": \"Zaktualizowane ogłoszenie o sprzedaży samochodu\",\n    \"dataDodania\": \"2025-08-22T13:45:00\",\n    \"iloscWyswietlen\": 5\n}"
+				},
+				{
+					"name": "Not Found Response",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tresc\": \"Zaktualizowane ogłoszenie\",\n    \"iloscWyswietlen\": 0\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/ads/999",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ads",
+								"999"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": \"2025-08-22T13:45:30\",\n    \"status\": 404,\n    \"message\": \"Advertisement with id 999 not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "4. DELETE - Usuń ogłoszenie",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/ads/{{advertisement_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ads",
+						"{{advertisement_id}}"
+					]
+				},
+				"description": "Usuwa ogłoszenie po ID. Zwraca 204 No Content po pomyślnym usunięciu"
+			},
+			"response": [
+				{
+					"name": "Success Response",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ads/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ads",
+								"1"
+							]
+						}
+					},
+					"status": "No Content",
+					"code": 204,
+					"_postman_previewlanguage": "json",
+					"header": [],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Not Found Response",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ads/999",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ads",
+								"999"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timestamp\": \"2025-08-22T13:45:30\",\n    \"status\": 404,\n    \"message\": \"Advertisement with id 999 not found\"\n}"
+				}
+			]
+		},
+		{
+			"name": "5. GET - Sprawdź licznik wyświetleń",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/ads/{{advertisement_id}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"ads",
+						"{{advertisement_id}}"
+					]
+				},
+				"description": "Demonstruje jak licznik wyświetleń zwiększa się przy każdym wywołaniu GET"
+			},
+			"response": [
+				{
+					"name": "First GET - licznik = 1",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ads/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ads",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"tresc\": \"Zaktualizowane ogłoszenie o sprzedaży samochodu\",\n    \"dataDodania\": \"2025-08-22T13:45:00\",\n    \"iloscWyswietlen\": 1\n}"
+				},
+				{
+					"name": "Second GET - licznik = 2",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/ads/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"ads",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"tresc\": \"Zaktualizowane ogłoszenie o sprzedaży samochodu\",\n    \"dataDodania\": \"2025-08-22T13:45:00\",\n    \"iloscWyswietlen\": 2\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "advertisement_id",
+			"value": "1",
+			"type": "string"
+		}
+	]
+}
