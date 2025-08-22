@@ -28,10 +28,14 @@ public class AdvertisementService {
 
     public Advertisement update(Long id, Advertisement updated) {
         logger.info("Updating advertisement with ID: {}", id);
-        Advertisement existing = getById(id);
+        
+        Advertisement existing = advertisementRepository.findById(id)
+                .orElseThrow(() -> {
+                    logger.warn("Advertisement not found with ID: {}", id);
+                    return new AdvertisementNotFoundException(id);
+                });
         
         existing.setTresc(updated.getTresc());
-        existing.setIloscWyswietlen(updated.getIloscWyswietlen());
         
         Advertisement saved = advertisementRepository.save(existing);
         logger.info("Advertisement updated successfully with ID: {} at {}", saved.getId(), saved.getDataDodania());

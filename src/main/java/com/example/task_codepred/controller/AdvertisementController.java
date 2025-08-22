@@ -69,7 +69,6 @@ public class AdvertisementController {
         
         Advertisement advertisement = new Advertisement();
         advertisement.setTresc(updateDto.getTresc());
-        advertisement.setIloscWyswietlen(updateDto.getIloscWyswietlen());
         
         Advertisement updated = advertisementService.update(id, advertisement);
         AdvertisementDto responseDto = convertToDto(updated);
