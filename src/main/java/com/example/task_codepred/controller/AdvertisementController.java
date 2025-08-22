@@ -8,17 +8,25 @@ import com.example.task_codepred.service.AdvertisementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/ads")
 @RequiredArgsConstructor
+@Validated
 public class AdvertisementController {
 
     private final AdvertisementService advertisementService;
 
+    public AdvertisementController(AdvertisementService advertisementService) {
+        this.advertisementService = advertisementService;
+    }
+
     @PostMapping
-    public ResponseEntity<AdvertisementDto> addAdvertisement(@RequestBody CreateAdvertisementDto createDto) {
+    public ResponseEntity<AdvertisementDto> addAdvertisement(@Valid @RequestBody CreateAdvertisementDto createDto) {
         Advertisement advertisement = new Advertisement();
         advertisement.setTresc(createDto.getTresc());
         
@@ -30,7 +38,7 @@ public class AdvertisementController {
 
     @PutMapping("/{id}")
     public ResponseEntity<AdvertisementDto> updateAdvertisement(@PathVariable Long id, 
-                                                              @RequestBody UpdateAdvertisementDto updateDto) {
+                                                              @Valid @RequestBody UpdateAdvertisementDto updateDto) {
         Advertisement advertisement = new Advertisement();
         advertisement.setTresc(updateDto.getTresc());
         advertisement.setIloscWyswietlen(updateDto.getIloscWyswietlen());

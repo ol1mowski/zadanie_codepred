@@ -16,6 +16,10 @@ public class AdvertisementService {
 
     private final AdvertisementRepository advertisementRepository;
 
+    public AdvertisementService(AdvertisementRepository advertisementRepository) {
+        this.advertisementRepository = advertisementRepository;
+    }
+
     public Advertisement add(Advertisement advertisement) {
         return advertisementRepository.save(advertisement);
     }
