@@ -1,0 +1,23 @@
+services:
+  app:
+    build: .
+    container_name: ads-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - h2
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:h2:tcp://h2:1521/~/testdb
+      SPRING_DATASOURCE_DRIVERCLASSNAME: org.h2.Driver
+      SPRING_DATASOURCE_USERNAME: sa
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+
+  h2:
+    image: oscarfonts/h2:2.1.214
+    container_name: ads-h2
+    ports:
+      - "1521:1521"
+      - "81:81"   # web console
+    environment:
+      H2_OPTIONS: "-ifNotExists"
