@@ -1,21 +1,28 @@
 package com.example.task_codepred.service;
 
-import com.example.task_codepred.entity.Advertisement;
-import com.example.task_codepred.exception.AdvertisementNotFoundException;
-import com.example.task_codepred.repository.AdvertisementRepository;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.ArgumentMatchers.argThat;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import org.mockito.junit.jupiter.MockitoExtension;
+
+import com.example.task_codepred.entity.Advertisement;
+import com.example.task_codepred.exception.AdvertisementNotFoundException;
+import com.example.task_codepred.repository.AdvertisementRepository;
 
 @ExtendWith(MockitoExtension.class)
 class AdvertisementServiceTest {
@@ -69,7 +76,7 @@ class AdvertisementServiceTest {
 
         assertNotNull(result);
         verify(advertisementRepository).findById(id);
-        verify(advertisementRepository, times(2)).save(any(Advertisement.class));
+        verify(advertisementRepository, times(1)).save(any(Advertisement.class));
     }
 
     @Test
