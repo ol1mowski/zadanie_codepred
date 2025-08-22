@@ -36,6 +36,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ResponseEntity<ErrorResponse> handleHttpRequestMethodNotSupportedException(HttpRequestMethodNotSupportedException ex) {
+        assert ex.getSupportedMethods() != null;
         String message = "Metoda HTTP '" + ex.getMethod() + "' nie jest obsługiwana dla tego endpointu. " +
                         "Obsługiwane metody: " + String.join(", ", ex.getSupportedMethods());
         
@@ -49,7 +50,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorResponse> handleValidationException(MethodArgumentNotValidException ex) {
-        String message = "Validation error: " + ex.getBindingResult().getFieldErrors().get(0).getDefaultMessage();
+        String message = "Validation error: " + ex.getBindingResult().getFieldErrors().getFirst().getDefaultMessage();
         ErrorResponse error = new ErrorResponse(
             LocalDateTime.now(),
             HttpStatus.BAD_REQUEST.value(),
@@ -60,7 +61,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<ErrorResponse> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException ex) {
-        String message = "Parametr '" + ex.getName() + "' ma nieprawidłowy typ. Oczekiwano: " + 
+        assert ex.getRequiredType() != null;
+        String message = "Parametr '" + ex.getName() + "' ma nieprawidłowy typ. Oczekiwano: " +
                         ex.getRequiredType().getSimpleName() + ", otrzymano: " + ex.getValue();
         
         ErrorResponse error = new ErrorResponse(
