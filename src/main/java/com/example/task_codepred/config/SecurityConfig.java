@@ -16,19 +16,17 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(authz -> authz
+                .requestMatchers("/").permitAll()
                 .requestMatchers("/ads/**").permitAll()
                 .requestMatchers("/h2-console/**").permitAll()
-                .anyRequest().authenticated()
+                .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
+                .requestMatchers("/error").permitAll()
+                .anyRequest().permitAll()
             )
             .headers(headers -> headers
-                .frameOptions().disable() // For H2 console
-                .contentTypeOptions().and()
+                .frameOptions(frame -> frame.disable()) // For H2 console
                 .httpStrictTransportSecurity(hstsConfig -> hstsConfig
                     .maxAgeInSeconds(31536000)
-                    .includeSubdomains(true)
-                )
-                .permissionsPolicy(permissions -> permissions
-                    .policy("geolocation=(), microphone=(), camera=()")
                 )
             );
         
