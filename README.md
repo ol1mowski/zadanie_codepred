@@ -21,7 +21,7 @@ Aplikacja ogłoszeniowa to nowoczesne REST API napisane w **Java 24** z wykorzys
 ## 🏗️ Architektura i Technologie
 
 ### **Backend Stack:**
-- **Java 24** - Najnowsza wersja Java z długoterminowym wsparciem
+- **Java 21** - Wersja Java z długoterminowym wsparciem (LTS)
 - **Spring Boot 3.5.5** - Framework do tworzenia aplikacji enterprise
 - **Spring Data JPA** - Abstrakcja dostępu do bazy danych
 - **Spring Security** - Bezpieczeństwo i autoryzacja
@@ -56,9 +56,10 @@ src/main/java/com/example/task_codepred/
 ## 🚀 Szybki Start
 
 ### **Wymagania Systemowe:**
-- Java 24 lub nowsza
+- Java 21 lub nowsza
 - Gradle 8.x
 - Port 8080 dostępny
+- **Docker** (opcjonalnie, dla uruchomienia w kontenerze)
 
 ### **Instalacja i Uruchomienie:**
 
@@ -69,12 +70,30 @@ cd zadanie_codepred
 ```
 
 2. **Uruchomienie aplikacji:**
+
+**Opcja A: Lokalnie z Gradle**
 ```bash
 ./gradlew bootRun
 ```
 
+**Opcja B: W Dockerze (zalecane)**
+```bash
+# Zbuduj i uruchom w Dockerze
+docker-compose up -d
+
+# Sprawdź status
+docker-compose ps
+
+# Zobacz logi
+docker-compose logs -f app
+```
+
 3. **Weryfikacja działania:**
 ```bash
+# Health check
+curl http://localhost:8080/actuator/health
+
+# Lista ogłoszeń (POST tylko)
 curl http://localhost:8080/ads
 ```
 
@@ -322,7 +341,7 @@ void testFullCrudFlow() throws Exception {
 
 ### **Automatyzacja:**
 - **Trigger:** Push/Pull Request na branch `main`
-- **Java Version:** 24
+- **Java Version:** 21
 - **Gradle Version:** 8.14.3
 - **Cache:** Automatyczne cachowanie zależności Gradle
 
@@ -349,6 +368,38 @@ jobs:
 - **Walidacja build** przed merge
 - **Cache dependencies** dla szybszych buildów
 - **Status reporting** w GitHub
+
+## 🐳 Docker
+
+### **Uruchomienie w Dockerze:**
+```bash
+# Zbuduj obraz
+docker-compose build
+
+# Uruchom aplikację
+docker-compose up -d
+
+# Sprawdź status
+docker-compose ps
+
+# Zobacz logi
+docker-compose logs -f app
+
+# Zatrzymaj
+docker-compose down
+```
+
+### **Docker Compose:**
+- **Port:** 8080
+- **Java:** 21 (Eclipse Temurin)
+- **Baza:** H2 in-memory
+- **Profil:** docker
+
+### **Dostępne endpointy w Dockerze:**
+- **Aplikacja:** http://localhost:8080
+- **Swagger UI:** http://localhost:8080/swagger-ui.html
+- **H2 Console:** http://localhost:8080/h2-console
+- **Health Check:** http://localhost:8080/actuator/health
 
 ## 🔧 Konfiguracja
 
@@ -410,7 +461,7 @@ Dołączona kolekcja `postman_collection.json` zawiera:
 ## 🎯 Kluczowe Zalety Implementacji
 
 ### **1. Nowoczesna Technologia:**
-- Java 24 z najnowszymi funkcjami
+- Java 21 z funkcjami LTS
 - Spring Boot 3.5.5 z pełnym wsparciem
 - Hibernate 6.6.26 z optymalizacją wydajności
 
@@ -494,8 +545,14 @@ Projekt jest częścią zadania rekrutacyjnego. Wszelkie prawa zastrzeżone.
 
 ## 🚀 **Uruchom Aplikację w Jednej Komendzie:**
 
+**Opcja A: Lokalnie**
 ```bash
 ./gradlew bootRun
+```
+
+**Opcja B: W Dockerze (zalecane)**
+```bash
+docker-compose up -d
 ```
 
 **Aplikacja będzie dostępna pod adresem:** `http://localhost:8080`
@@ -508,7 +565,7 @@ Projekt jest częścią zadania rekrutacyjnego. Wszelkie prawa zastrzeżone.
 
 ---
 
-## 🔥 **Nowe Funkcjonalności w Najnowszej Wersji:**
+## 🔥 **Funkcjonalności w Wersji Java 21:**
 
 - ✅ **Spring Security** - Bezpieczeństwo i autoryzacja
 - ✅ **OpenAPI 3.0** - Automatyczna dokumentacja API
