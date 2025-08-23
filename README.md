@@ -248,7 +248,7 @@ X-Content-Type-Options: nosniff
 ### **Przykłady Logów:**
 ```
 2025-08-22 15:42:26 [restartedMain] INFO  c.e.t.TaskCodepredApplication - Starting TaskCodepredApplication
-2025-08-22 15:42:26 [restartedMain] INFO  c.e.t.TaskCodepredApplication - Using Java 24.0.1
+2025-08-22 15:42:26 [restartedMain] INFO  c.e.t.TaskCodepredApplication - Using Java 21.0.1
 2025-08-22 15:42:28 [restartedMain] INFO  AdvertisementService - Adding new advertisement with content: Sprzedam samochód
 ```
 
@@ -356,7 +356,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
-          java-version: '24'
+          java-version: '21'
           distribution: 'temurin'
       - uses: gradle/gradle-build-action@v2
         with:
