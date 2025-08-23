@@ -2,7 +2,7 @@
 
 ## 📋 Opis Projektu
 
-Aplikacja ogłoszeniowa to nowoczesne REST API napisane w **Java 24** z wykorzystaniem **Spring Boot 3.5.5**, które umożliwia pełne zarządzanie ogłoszeniami (CRUD) z automatycznym śledzeniem liczby wyświetleń. Projekt zawiera zaawansowane funkcjonalności bezpieczeństwa, monitoringu i dokumentacji API.
+Aplikacja ogłoszeniowa to nowoczesne REST API napisane w **Java 21** z wykorzystaniem **Spring Boot 3.5.5**, które umożliwia pełne zarządzanie ogłoszeniami (CRUD) z automatycznym śledzeniem liczby wyświetleń. Projekt zawiera zaawansowane funkcjonalności bezpieczeństwa, monitoringu i dokumentacji API.
 
 ## ✨ Główne Funkcjonalności
 
