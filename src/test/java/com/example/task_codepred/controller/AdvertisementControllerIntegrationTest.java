@@ -71,12 +71,12 @@ class AdvertisementControllerIntegrationTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(advertisementId))
                 .andExpect(jsonPath("$.tresc").value("Zaktualizowane ogłoszenie integracyjne"))
-                .andExpect(jsonPath("$.iloscWyswietlen").value(5));
+                .andExpect(jsonPath("$.iloscWyswietlen").value(2)); // licznik pozostaje bez zmian po update
 
         mockMvc.perform(get("/ads/" + advertisementId))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.tresc").value("Zaktualizowane ogłoszenie integracyjne"))
-                .andExpect(jsonPath("$.iloscWyswietlen").value(6));
+                .andExpect(jsonPath("$.iloscWyswietlen").value(3)); // 2 + 1 po kolejnym get
 
         mockMvc.perform(delete("/ads/" + advertisementId))
                 .andExpect(status().isNoContent());
