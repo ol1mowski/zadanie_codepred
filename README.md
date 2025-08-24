@@ -2,7 +2,7 @@
 
 ## 📋 Opis Projektu
 
-Aplikacja ogłoszeniowa to nowoczesne REST API napisane w **Java 24** z wykorzystaniem **Spring Boot 3.5.5**, które umożliwia pełne zarządzanie ogłoszeniami (CRUD) z automatycznym śledzeniem liczby wyświetleń. Projekt zawiera zaawansowane funkcjonalności bezpieczeństwa, monitoringu i dokumentacji API.
+Aplikacja ogłoszeniowa to nowoczesne REST API napisane w **Java 21** z wykorzystaniem **Spring Boot 3.5.5**, które umożliwia pełne zarządzanie ogłoszeniami (CRUD) z automatycznym śledzeniem liczby wyświetleń. Projekt zawiera zaawansowane funkcjonalności bezpieczeństwa, monitoringu i dokumentacji API.
 
 ## ✨ Główne Funkcjonalności
 
@@ -248,7 +248,7 @@ X-Content-Type-Options: nosniff
 ### **Przykłady Logów:**
 ```
 2025-08-22 15:42:26 [restartedMain] INFO  c.e.t.TaskCodepredApplication - Starting TaskCodepredApplication
-2025-08-22 15:42:26 [restartedMain] INFO  c.e.t.TaskCodepredApplication - Using Java 24.0.1
+2025-08-22 15:42:26 [restartedMain] INFO  c.e.t.TaskCodepredApplication - Using Java 21.0.1
 2025-08-22 15:42:28 [restartedMain] INFO  AdvertisementService - Adding new advertisement with content: Sprzedam samochód
 ```
 
@@ -356,7 +356,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
-          java-version: '24'
+          java-version: '21'
           distribution: 'temurin'
       - uses: gradle/gradle-build-action@v2
         with:
