@@ -17,19 +17,17 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .csrf(AbstractHttpConfigurer::disable)
-                               .authorizeHttpRequests(authz -> authz
-                       .requestMatchers("/").permitAll()
-                       .requestMatchers("/ads/**").permitAll()
-                       .requestMatchers("/h2-console/**").permitAll()
-                       .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
-                       .requestMatchers("/actuator/**").permitAll()
-                       .requestMatchers("/error").permitAll()
-                       .anyRequest().permitAll()
-                   )
+            .authorizeHttpRequests(authz -> authz
+                .anyRequest().permitAll()
+            )
             .headers(headers -> headers
-                .frameOptions(HeadersConfigurer.FrameOptionsConfig::disable) // For H2 console
+                .frameOptions(HeadersConfigurer.FrameOptionsConfig::disable)
                 .httpStrictTransportSecurity(hstsConfig -> hstsConfig
                     .maxAgeInSeconds(31536000)
+                )
+                .contentTypeOptions(HeadersConfigurer.ContentTypeOptionsConfig::disable)
+                .xssProtection(xssConfig -> xssConfig
+                    .disable()
                 )
             );
         
